@@ -26,7 +26,7 @@ jobs:
       - name: Create new tag
         uses: ShootGan/push-tag-version@master
         with:
-          github_token: "${{ secrets.TOKEN }}"
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Build project
         run: yarn run build --target npm
@@ -40,7 +40,7 @@ jobs:
       - name: Create GitHub realese
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          repo_token: "${{ secrets.TOKEN }}"
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           files: |
             LICENSE.txt
