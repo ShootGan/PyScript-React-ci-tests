@@ -37,10 +37,15 @@ jobs:
           files: library/
           dest: pyscript-react.zip
 
+      - name: Get current tag
+        run: | 
+          echo "current_tag=v`grep version package.json | sed 's/.*"version": "\(.*\)".*/\1/'`" >> $GITHUB_ENV
+
       - name: Create GitHub realese
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "${{ current_tag }}"
           prerelease: false
           files: |
             LICENSE.txt
