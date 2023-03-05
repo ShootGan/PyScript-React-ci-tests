@@ -1,0 +1,52 @@
+name: Deploy PyReact
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: yarn --ignore-engines
+
+      - name: Run tests
+        run: yarn run test
+
+      - name: Create new tag
+        uses: ShootGan/push-tag-version@master
+        with:
+          github_token: "${{ secrets.TOKEN }}"
+
+      - name: Build project
+        run: yarn run build --target npm
+
+      - name: Create zip lib
+        uses: vimtor/action-zip@v1
+        with:
+          files: library/
+          dest: pyscript-react.zip
+
+      - name: Create GitHub realese
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.TOKEN }}"
+          prerelease: false
+          files: |
+            LICENSE.txt
+            pyscript-react.zip
+
+      - name: Publish to npm 🚀
+        run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
