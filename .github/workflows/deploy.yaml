@@ -23,7 +23,7 @@ jobs:
 
       - name: Build project
         run: |
-              echo ls
+              ls
               yarn run build
 
       - name: Create zip lib
@@ -34,9 +34,9 @@ jobs:
 
       - name: Get current tag
         run: |
-          echo ls
+          ls
           echo "current_tag=v`grep version package.json | sed 's/.*"version": "\(.*\)".*/\1/'`" >> $GITHUB_ENV
-          echo ls
+          ls
       - name: Create new tag
         uses: rickstaa/action-create-tag@v1
         id: "tag_create"
@@ -58,12 +58,12 @@ jobs:
       - name: Publish to npm 🚀
         run: |
           cd library
-          echo ls
+          ls
           cd ..
           for dir in library/*; do
             if [ -d "$dir" ]; then
               cd "$dir"
-              echo ls
+              ls
               cd ../../
             fi
           done
