@@ -1,5 +1,5 @@
 {
     "yaml.schemas": {
-        "https://json.schemastore.org/github-workflow.json": "file:///e%3A/Projects/PyScript-React-ci-tests/.github/workflows/deploy.yml"
+        "https://json.schemastore.org/github-workflow.json": "file:///e%3A/Projects/PyScript-React-ci-tests/.github/workflows/deploy.yaml"
     }
 }

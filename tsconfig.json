@@ -7,6 +7,7 @@
     ]
   },
   "compilerOptions": {
+    "inlineSourceMap": true,
     "incremental": true,
     "jsx": "react-jsx",
     "target": "esnext",
@@ -14,7 +15,6 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "sourceMap": true,
     "alwaysStrict": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -39,19 +39,15 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
-    "outDir": "./library",
     "paths": {
       "~root/*": ["*"],
-      "~components/*": ["source/components/*"],
-      "~types/*": ["source/types/*"],
-      "~utils/*": ["source/utils/*"],
-      "~scripts/*": ["scripts/*"]
-    },
-    "plugins": [
-      {
-        "transform": "typescript-transform-paths"
-      }
-    ]
+      "~components/*": ["source/library/components/*"],
+      "~types/*": ["source/library/types/*"],
+      "~utils/*": ["source/library/utils/*"],
+      "~hooks/*": ["source/library/hooks/*"],
+      "~stores/*": ["source/library/stores/*"],
+      "~scripts/*": ["source/scripts/*"]
+    }
   },
   "include": ["."],
   "exclude": ["node_modules", "coverage", "library"]

@@ -1,4 +1,4 @@
-const tsconfig = require("./tsconfig.json");
+const tsconfig = require("../tsconfig.node.json");
 require("ts-node").register(tsconfig);
 const { default: config } = require("./docusaurus.config.ts");
 

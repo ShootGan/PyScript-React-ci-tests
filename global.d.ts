@@ -1,7 +1,11 @@
-import { DetailedHTMLProps, HTMLAttributes } from "react";
-import ReactElementProps from "~root/source/types/ReactElementProps/ReactElementProps";
+import type { DetailedHTMLProps, HTMLAttributes } from "react";
+import type PyScriptWindowObject from "~types/pyscript-window-object/pyscript-window-object";
+import type ReactElementProps from "~types/react-element-properties/react-element-properties";
 
 declare global {
+  interface Window {
+    pyscript: PyScriptWindowObject;
+  }
   namespace JSX {
     export interface IntrinsicElements {
       ["py-script"]: Omit<
@@ -13,6 +17,12 @@ declare global {
         children: string;
         output?: string;
       };
+      ["py-loader"]: Omit<
+        ReactElementProps<
+          DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
+        >,
+        "children"
+      >;
       ["py-env"]: Omit<
         ReactElementProps<
           DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
@@ -30,7 +40,7 @@ declare global {
       ["py-config"]: ReactElementProps<
         DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       > & {
-        children: string;
+        children?: string;
       };
       ["py-inputbox"]: ReactElementProps<
         DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
@@ -57,6 +67,17 @@ declare global {
         DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       > & {
         children: string;
+      };
+      ["py-terminal"]: ReactElementProps<
+        DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
+      > & {
+        auto?: boolean;
+      };
+      ["py-splashscreen"]: ReactElementProps<
+        DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
+      > & {
+        autoclose?: boolean;
+        enabled?: boolean;
       };
     }
   }

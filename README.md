@@ -6,22 +6,29 @@
 ![GitHub issues](https://img.shields.io/github/issues/Py4Js/PyScript-React)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Py4Js/PyScript-React)
 
+![Alt](https://repobeats.axiom.co/api/embed/cba6dcd58ac96f5fd18faccbc3276dd30427e64b.svg "Repobeats analytics image")
+
 ## PyScript-React integrates [PyScript](https://github.com/pyscript/pyscript) library into react components. Making it easier to use inside your react projects 😊
+
+## Peer dependencies
+
+Required by whole library: react, prop-types  
+Required by PyScriptProvider, and PyScriptProviderZustandWrapper: react-helmet-async  
+Required by PyScriptProviderZustandWrapper: zustand
 
 ## Try it
 
 ```sh
-# not yet available
-yarn add pyscript-react # installation with yarn (preffered node package manager)
+yarn add pyscript-react # installation with yarn (preferred node package manager)
 npm i pyscript-react # installation with npm
-pnpm add pyscript-react # intallation with pnpm
+pnpm add pyscript-react # installation with pnpm
 ```
 
 ### Example hello world
 
 ```tsx
 <PyScriptProvider>
-  <PyScript>print("Hello world!")</PyScript>
+  <PyScript>display("Hello world!")</PyScript>
 </PyScriptProvider>
 ```
 
@@ -30,10 +37,13 @@ pnpm add pyscript-react # intallation with pnpm
 ```tsx
 <PyScriptProvider>
   <PyScript
+    source="/folium_map.py",
     output="folium"
     generateOutputTag
-    pyEnvContent={["folium"]}
-    src="./folium_map.py"
+    pyConfigProps={{
+      type: "json",
+      packages: new Set(["folium"]),
+    }}
   />
 </PyScriptProvider>
 ```
@@ -43,7 +53,7 @@ pnpm add pyscript-react # intallation with pnpm
 from folium import Map
 
 variable = Map(location=[45.5236, -122.6750])
-variable
+display(variable, target="folium")
 ```
 
 ## Documentation

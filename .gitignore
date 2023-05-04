@@ -1,7 +1,9 @@
 node_modules
 tsconfig.tsbuildinfo
 yarn-error.log
-library
 coverage
 .docusaurus
 bundle-analyzes
+library/
+.webpackCache/
+!source/library/

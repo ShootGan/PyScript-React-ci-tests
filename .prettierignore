@@ -1,4 +1,5 @@
-library/
+destination/
 yarn.lock
 .husky/
+bundle-analyzes/
 coverage/

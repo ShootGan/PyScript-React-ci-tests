@@ -1,48 +1,67 @@
-import { Options } from "@docusaurus/preset-classic";
+import { Options, ThemeConfig } from "@docusaurus/preset-classic";
 import { Config } from "@docusaurus/types";
+import "prism-react-renderer";
+import darkCodeTheme from "prism-react-renderer/themes/dracula";
+import lightCodeTheme from "prism-react-renderer/themes/github";
+
+const organizationName = "Py4Js";
+const githubLink = "https://github.com/Py4Js/pyscript-react";
 
 const config: Config = {
-  title: "PyScript-React Docs",
+  title: `${organizationName} Documentation`,
+  tagline: `${organizationName} Documentation`,
+  url: "https://pyscript-react.github.io",
   baseUrl: "/",
-  url: "https://py4js.github.io/",
-  organizationName: "Py4Js",
-  projectName: "PyScript-React",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
+  favicon: "img/favicon.ico",
+  organizationName,
+  projectName: organizationName,
   i18n: {
     defaultLocale: "en",
-    locales: ["en", "pl"],
+    locales: ["en"],
   },
-  customFields: {
-    prism: {
-      additionalLanguages: ["python", "typescript", "javascript"],
-    },
-  },
-  themeConfig: {
-    navbar: {
-      title: "PyScript-React",
-      items: [
-        {
-          type: "doc",
-          docId: "Getting Started",
-          position: "left",
-        },
-      ],
-    },
-    colorMode: {
-      respectPrefersColorScheme: true,
-    },
-  },
+  plugins: [
+    require.resolve("@cmfcmf/docusaurus-search-local"),
+    require.resolve("plugin-image-zoom"),
+  ],
   presets: [
     [
-      "@docusaurus/preset-classic",
+      "classic",
       {
         docs: {
-          sidebarPath: require.resolve("./src/sidebars.ts"),
+          sidebarPath: require.resolve("./sidebars.ts"),
+          editUrl: githubLink,
         },
       } as Options,
     ],
   ],
+  themeConfig: {
+    navbar: {
+      title: organizationName,
+      logo: {
+        alt: organizationName,
+        src: "img/logo.svg",
+      },
+      items: [
+        {
+          type: "doc",
+          docId: "intro",
+          position: "left",
+          label: "Documentation",
+        },
+        {
+          href: githubLink,
+          label: "GitHub",
+          position: "right",
+        },
+      ],
+    } as ThemeConfig,
+    prism: {
+      theme: lightCodeTheme,
+      darkTheme: darkCodeTheme,
+    },
+  },
 };
 
 export default config;
