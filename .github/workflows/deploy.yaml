@@ -24,6 +24,7 @@ jobs:
       - name: Build project
         run: |
               ls
+              echo "--------------------------------------------"
               yarn run build
 
       - name: Create zip lib
@@ -58,12 +59,17 @@ jobs:
       - name: Publish to npm 🚀
         run: |
           cd library
+          echo "--------------------------------------------"
           ls
+          echo "--------------------------------------------"
           cd ..
           for dir in library/*; do
             if [ -d "$dir" ]; then
               cd "$dir"
+              echo "--------------------------------------------"
+              echo "$dir"
               ls
+              echo "--------------------------------------------"
               cd ../../
             fi
           done
