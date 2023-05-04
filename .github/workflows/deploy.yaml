@@ -65,8 +65,7 @@ jobs:
             pyscript-react.zip
 
       - name: Publish to npm 🚀
-king-directory: ./pyscript-react
------------------------------------"
+        run: |
           ls
           echo "--------------------------------------------"
           cd ..
