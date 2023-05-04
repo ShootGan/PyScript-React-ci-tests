@@ -31,16 +31,19 @@ jobs:
 
       - name: Create zip lib
         uses: vimtor/action-zip@v1
+        working-directory: ./pyscript-react
         with:
           files: library/
           dest: pyscript-react.zip
 
       - name: Get current tag
+        working-directory: ./pyscript-react
         run: |
           ls
           echo "current_tag=v`grep version package.json | sed 's/.*"version": "\(.*\)".*/\1/'`" >> $GITHUB_ENV
           ls
       - name: Create new tag
+        working-directory: ./pyscript-react
         uses: rickstaa/action-create-tag@v1
         id: "tag_create"
         with:
@@ -49,6 +52,7 @@ jobs:
           message: "Latest release"
 
       - name: Create GitHub realese
+        working-directory: ./pyscript-react
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -59,6 +63,7 @@ jobs:
             pyscript-react.zip
 
       - name: Publish to npm 🚀
+        working-directory: ./pyscript-react
         run: |
           cd library
           echo "--------------------------------------------"
