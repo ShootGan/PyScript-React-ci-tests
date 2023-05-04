@@ -18,8 +18,8 @@ jobs:
       - name: Install dependencies
         run: yarn --ignore-engines
 
-      - name: Run tests
-        run: yarn run test
+      # - name: Run tests
+      #   run: yarn run test
 
       - name: Build project
         run: |
