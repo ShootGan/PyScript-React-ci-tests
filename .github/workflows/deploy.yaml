@@ -16,11 +16,14 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+            path: ./pyscript-react
 
       - name: Install dependencies
         run: yarn --ignore-engines
       # - name: Run tests
       #   run: yarn run test
+        working-directory: ./pyscript-react
 
       - name: Build project
         run: |
@@ -32,6 +35,7 @@ jobs:
               echo "--------------------------------------------"
               ls ./library/umd
               echo "--------------------------------------------"
+        working-directory: ./pyscript-react
 
       - name: Create zip lib
         uses: vimtor/action-zip@v1
