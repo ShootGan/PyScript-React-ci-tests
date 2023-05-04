@@ -8,7 +8,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
+        with:
+          path: ./pyscript-react
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -17,7 +18,7 @@ jobs:
 
       - name: Install dependencies
         run: yarn --ignore-engines
-
+        working-directory: ./pyscript-react
       # - name: Run tests
       #   run: yarn run test
 
@@ -26,6 +27,7 @@ jobs:
               ls
               echo "--------------------------------------------"
               yarn run build
+        working-directory: ./pyscript-react
 
       - name: Create zip lib
         uses: vimtor/action-zip@v1
