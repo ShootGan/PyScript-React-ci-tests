@@ -16,8 +16,6 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          path: ./pyscript-react
 
       - name: Install dependencies
         run: yarn --ignore-engines
